@@ -1,0 +1,16 @@
+<h1>New Question</h1>
+<form (submit) = "listQuestion(); questionForm.reset()" #questionForm='ngForm'>
+	<p>Question: 
+		<textarea name='content' cols='50' rows='6'
+		required
+		[(ngModel)]='newQuestion.content'
+		#content='ngModel'></textarea></p>
+		<span *ngIf='content.errors?.required && (content.dirty||content.touched)'><p>Question is required</p></span>
+		<span *ngIf='content.errors?.minlength && (content.dirty||content.touched)'><p>Question must be at least 10 characters</p></span>
+
+	<p>Description: 
+		<textarea name='description' cols='50' rows='6'
+		[(ngModel)]='newQuestion.description'
+		#description='ngModel'></textarea></p>
+		<input [disabled]='!questionForm.valid' type="submit" value='Submit'>
+</form>
